@@ -31,7 +31,7 @@
 	| the project.
 	|
 	*/
-	$web_url = "http://localhost/anonbuddy_kpf/";
+	$web_url = "http://localhost/kp-framework/";
 
 	/*
 	|--------------------------------------------------------------------------
@@ -104,12 +104,16 @@
 	| below since it is going to be global.
 	|
 	| If not included, please ignore or comment below four variables.
+	| 
+	| Supported database server: cubrid, ibase, mssql, mysql, mysqli, oci8, odbc,
+	| pdo, postgre, sqlite, sqlite3, sqlsrv
 	|
 	*/
+	$database_server = "mysqli";
 	$database_host = "localhost";
 	$database_username = "root";
 	$database_password = "";
-	$database_name = "anonbuddy";
+	$database_name = "amigoshub";
 
 	/*
 	|--------------------------------------------------------------------------

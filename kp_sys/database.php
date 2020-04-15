@@ -7,27 +7,26 @@
 	 * @author Kawalpreet Singh Juneja
 	 */
 
-	# If this file was included globally, we need to set up DB connection
-	$db_config = [
-		"env" => $working_env,
-		"development" => [
-							"host" => $database_host,
-							"database" => $database_name,
-							"username" => $database_username,
-							"password" => $database_password
-						 ],
-		"production"  => [
-							"host" => $database_host,
-							"database" => $database_name,
-							"username" => $database_username,
-							"password" => $database_password
-						 ]
-	];
+	# If config not set, die for this user
+	if(!isset($database_server)) {
+		echo "Please set database settings";
+		die;
+	}
 
-	# KP Framework uses Marei DB Query Builder. Let's include it and make DB instance
-	include "DB.php";
+	# KP Framework uses CI DB Query Builder. Let's include it and make DB instance
+	define('BASEPATH', realpath(dirname(__FILE__)).'/');
+	include_once("database/DB.php");
+
+	# Function outside db.php so define them empty
+	function log_message() {}
+	function show_error() {}	
+
+	# Magic connection string passed to above function
+	$conn = "$database_server://$database_username:$database_password@$database_host/$database_name";
 
 	# Reserve a function for DB instance
 	function db() {
-		return DB::getInstance();
+		# Make connection
+		$database = DBCI($GLOBALS['conn'], true);
+		return $database;
 	}
